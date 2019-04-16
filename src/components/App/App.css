@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+  display: block;
+  min-height: 100vh;
+  color: #fff;
+  background-color: #282C34;
+}
+
+.status-text{
+  padding-top: 80px;
+  font-size: 24px;
+}
+.status-text .x{
+  color: #F44336;
+}
+.status-text .o{
+  color: #03A9F4;
+ }
