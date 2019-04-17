@@ -14,7 +14,15 @@ class Tile extends Component {
     getClasses = () => {
         let classes = "tile";
         if (this.props.boardState !== -1){
-            classes += this.props.boardState ? " board-x" : " board-y";
+            if (this.props.boardState === 0){
+                classes += " board-x";
+            }
+            else if (this.props.boardState === 1){
+                classes += " board-o";
+            }
+            else if (this.props.boardState === 2){
+                classes += " board-none";
+            }
             return classes;
         }
         if (!this.props.isValid) classes += " disabled";

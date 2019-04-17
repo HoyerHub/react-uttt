@@ -50,12 +50,16 @@
 .tile.O{
     color: #03A9F4;
 }
-.tile.board-x{
+.tile.board-o{
     background-color: #03A9F4;
 }
-.tile.board-y{
+.tile.board-x{
     background-color: #F44336;
 }
+.tile.board-none{
+    background: #444;
+    color: #bbb;
+ }
 @media screen and (min-width: 1228px) {
     .board-container{
         width: 36%;

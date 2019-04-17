@@ -1,10 +1,11 @@
 class State {
     applyAction = (board, pos) => {
+        if (this.isTerminal) return this;
         let fullBoard = this.boards[0][board] | this.boards[1][board];
         if(fullBoard & (1 << pos)){
             this.isTerminal = true;
             this.winner = 1 - this.currentPlayer;
-            return;
+            return this;
         }
         this.boards[this.currentPlayer][board] |= (1 << pos);
         let updateBigBoard = false;
@@ -25,7 +26,7 @@ class State {
                     this.isTerminal = true;
                 }
 
-            let boardState = this.boardStates[0] | this.boardStates[1] | this.boardStates[2];
+            let boardState = this.getBoardState();
             if (!this.isTerminal && boardState === 0b111111111){
                 this.isTerminal = true;
             }
@@ -37,7 +38,8 @@ class State {
 
     getActions = () => {
         let actions = [];
-        let boardState = this.boardStates[0] | this.boardStates[1] | this.boardStates[2];
+        if (this.isTerminal) return actions;
+        let boardState = this.getBoardState();
         let pos = this.lastMove[1];
         if(pos === -1 || boardState & (1 << pos)){
             for (let i = 0; i < 9; i++) {
@@ -51,6 +53,10 @@ class State {
             actions = window.actionsFromBoard[pos][board];
         }
         return actions;
+    };
+
+    getBoardState = () => {
+        return this.boardStates[0] | this.boardStates[1] | this.boardStates[2];
     };
 
     getRandomAction = () => {

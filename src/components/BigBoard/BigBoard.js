@@ -11,7 +11,8 @@ class BigBoard extends Component {
                 key={"board"+i}
                 board={i}
                 boardState={this.props.boardStates[i]}
-                tileState={this.props.tileStates[i]}
+                tileStateX={this.props.tileStates[0][i]}
+                tileStateO={this.props.tileStates[1][i]}
                 tileClickMethod={this.props.tileClickMethod}
                 validMovesMethod={this.props.validMovesMethod}/>);
         }

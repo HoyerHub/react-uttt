@@ -15,9 +15,17 @@ class SmallBoard extends Component
                 board={this.props.board}
                 boardState={this.props.boardState}
                 tile={i}
-                tileState={this.props.tileState[i]}/>);
+                tileState={this.getTileState(i)}/>);
         }
         return html;
+    };
+
+    getTileState = (tile) =>{
+        if (this.props.tileStateX & (1 << tile))
+            return 0;
+        else if (this.props.tileStateO & (1 << tile))
+            return 1;
+        return -1;
     };
 
     render()
