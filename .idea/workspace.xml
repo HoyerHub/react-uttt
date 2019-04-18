@@ -80,14 +80,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1602" />
+            <state relative-caret-position="238">
+              <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+            </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.slugignore">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -173,6 +175,7 @@
         <option value="$PROJECT_DIR$/src/components/PlayerSettings/PlayerSettings.css" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/.slugignore" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -274,12 +277,12 @@
       <workItem from="1555164223778" duration="29696000" />
       <workItem from="1555441573176" duration="12715000" />
       <workItem from="1555506456638" duration="28108000" />
-      <workItem from="1555596773435" duration="16506000" />
+      <workItem from="1555596773435" duration="17182000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117625000" />
+    <option name="totallyTimeSpent" value="118301000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-1" width="1936" height="1056" extended-state="6" />
@@ -559,15 +562,17 @@
         <state relative-caret-position="-1836" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1602" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.slugignore">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
         </state>
       </provider>
     </entry>
