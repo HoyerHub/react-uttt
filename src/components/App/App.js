@@ -4,6 +4,7 @@ import BigBoard from '../BigBoard/BigBoard'
 import Engine from "../../game/Engine";
 import {IconReset} from "../Icons/Icons";
 import ScoreProgressBar from "../ScoreProgressBar/ScoreProgressBar";
+import PlayerSettings from "../PlayerSettings/PlayerSettings";
 
 class App extends Component {
 
@@ -52,6 +53,10 @@ class App extends Component {
         }
     };
 
+    setPlayerMode = (player, mode) => {
+        this.engine.setPlayerMode(player, mode, this.updateState);
+    };
+
     render() {
         return (
             <div className="App">
@@ -61,6 +66,7 @@ class App extends Component {
                     tileStates={this.state.boards}
                     tileClickMethod={this.clickedTile}
                     validMovesMethod={this.state.validMovesMethod}/>
+                <PlayerSettings setPlayerMode={this.setPlayerMode} playerModes={this.engine.playerModes}/>
                 <ScoreProgressBar progress={this.engine.winChances[1]}/>
             </div>
         );

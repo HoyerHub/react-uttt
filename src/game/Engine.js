@@ -13,6 +13,15 @@ class Engine {
         return this.actions.some(action => action[0] === board && action[1] === tile);
     };
 
+    setPlayerMode = (player, mode, callback) => {
+        if (typeof this.callback === "undefined") this.callback = callback;
+        this.playerModes[player] = mode;
+        callback();
+        if (mode === 1 && player === this.state.currentPlayer){
+            this.worker.postMessage(JSON.stringify(this.state));
+        }
+    };
+
     getBoardStates = () => {
       let result = [];
       for (let i = 0; i < 9; i++) {
@@ -55,9 +64,12 @@ class Engine {
         this.worker.onmessage = e => {
             this.winChances[this.state.currentPlayer] = Math.min(100, Math.max(0, e.data[2]));
             this.winChances[1 - this.state.currentPlayer] = 100 - this.winChances[this.state.currentPlayer];
-            console.log(this.winChances);
-            this.callback();
+            if (this.playerModes[this.state.currentPlayer] === 1){
+                this.onClick(e.data[0], e.data[1], this.callback);
+            }
+            else this.callback();
         };
+        this.playerModes = [0, 0];
     };
 }
 export default Engine;

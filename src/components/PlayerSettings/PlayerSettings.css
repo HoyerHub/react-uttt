@@ -1,0 +1,31 @@
+.player-settings{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+}
+.player-settings>div{
+    display: inline-block;
+    fill: white;
+}
+.player-settings-o .active{
+    fill: #03A9F4;
+}
+.player-settings-x .active{
+     fill: #F44336;
+ }
+.player-settings-x{
+    float: left;
+}
+.player-settings-o{
+    float: right;
+}
+.player-settings .icon-computer{
+    margin-left: 6px;
+}
+.player-settings .icon-user svg{
+    height: 20px;
+}
+.player-settings .icon-computer svg{
+     height: 20px;
+ }

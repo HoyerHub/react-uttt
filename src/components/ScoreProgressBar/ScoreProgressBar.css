@@ -10,7 +10,8 @@
     border-radius: 10px;
     color: #F44336;
     background-color: #161921;
-
+    position: relative;
+    overflow: hidden;
 }
 .progress {
     height: 24px;
@@ -18,15 +19,15 @@
     border-radius: 0 10px 10px 0;
     color: #03A9F4;
     float: right;
-    transition: width 1s;
+    transition: width 0.4s;
 }
 .score-progress-bar__o{
-    float: right;
-    margin-right: 20px;
+    position: absolute;
+    right: 20px;
 }
 .score-progress-bar__x{
-     float: left;
-     margin-left: 20px;
+    position: absolute;
+    left: 20px;
  }
 @media screen and (min-width: 996px) {
     .progress-bar-container{
