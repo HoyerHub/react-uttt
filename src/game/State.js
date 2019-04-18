@@ -10,7 +10,7 @@ class State {
         this.boards[this.currentPlayer][board] |= (1 << pos);
         let updateBigBoard = false;
         let checkWins = false;
-        if (window.boardHasWin[this.boards[this.currentPlayer][board]]){
+        if (State.boardHasWin[this.boards[this.currentPlayer][board]]){
             updateBigBoard = true;
             checkWins = true;
             this.boardStates[this.currentPlayer] |= (1 << board);
@@ -21,11 +21,10 @@ class State {
         }
         if (updateBigBoard){
             if (checkWins)
-                if (window.boardHasWin[this.boardStates[this.currentPlayer]]){
+                if (State.boardHasWin[this.boardStates[this.currentPlayer]]){
                     this.winner = this.currentPlayer;
                     this.isTerminal = true;
                 }
-
             let boardState = this.getBoardState();
             if (!this.isTerminal && boardState === 0b111111111){
                 this.isTerminal = true;
@@ -45,12 +44,12 @@ class State {
             for (let i = 0; i < 9; i++) {
                 if (boardState & (1 << i)) continue;
                 let board = this.boards[0][i] | this.boards[1][i];
-                actions.push(...window.actionsFromBoard[i][board]);
+                actions.push(...State.actionsFromBoard[i][board]);
             }
         }
         else {
             let board = this.boards[0][pos] | this.boards[1][pos];
-            actions = window.actionsFromBoard[pos][board];
+            actions = State.actionsFromBoard[pos][board];
         }
         return actions;
     };
@@ -75,31 +74,31 @@ class State {
         return rewards;
     };
 
-    constructor(parent){
-        if (parent){
-            this.currentPlayer = parent.currentPlayer;
-            this.isTerminal = parent.isTerminal;
-            this.lastMove = [...parent.lastMove];
-            this.winner = parent.winner;
-            this.boardStates = [...parent.boardStates];
+    constructor(state){
+        if (state){
+            this.currentPlayer = state.currentPlayer;
+            this.isTerminal = state.isTerminal;
+            this.lastMove = [...state.lastMove];
+            this.winner = state.winner;
+            this.boardStates = [...state.boardStates];
             this.boards = [];
             for (let i = 0; i < 2; i++) {
-                this.boards.push([...parent.boards[i]])
+                this.boards.push([...state.boards[i]])
             }
-            return;
         }
-
-        this.currentPlayer = 0;
-        this.isTerminal = false;
-        this.lastMove = [-1, -1];
-        this.winner = -1;
-        this.boardStates = [0,0,0];
-        this.boards = [[],[]];
-        for (let i = 0; i < 9; i++) {
-            this.boards[0].push(0);
-            this.boards[1].push(0);
+        else{
+            this.currentPlayer = 0;
+            this.isTerminal = false;
+            this.lastMove = [-1, -1];
+            this.winner = -1;
+            this.boardStates = [0,0,0];
+            this.boards = [[],[]];
+            for (let i = 0; i < 9; i++) {
+                this.boards[0].push(0);
+                this.boards[1].push(0);
+            }
         }
-        if (typeof window.boardHasWin === "undefined"){
+        if (typeof State.boardHasWin === "undefined"){
             const winCombos = [
                 0b111000000,
                 0b000111000,
@@ -109,7 +108,7 @@ class State {
                 0b001001001,
                 0b100010001,
                 0b001010100];
-            window.boardHasWin = [];
+            State.boardHasWin = [];
             for (let i = 0; i < 512; i++) {
                 let hasWin = false;
                 for (let j = 0; j < 8; j++) {
@@ -118,9 +117,9 @@ class State {
                         hasWin = true;
                     }
                 }
-                window.boardHasWin.push(hasWin);
+                State.boardHasWin.push(hasWin);
             }
-            window.actionsFromBoard = [];
+            State.actionsFromBoard = [];
             for (let i = 0; i < 9; i++) {
                 let actionsInBoard = [];
                 for (let j = 0; j < 512; j++) {
@@ -130,7 +129,7 @@ class State {
                     }
                     actionsInBoard.push(actions);
                 }
-                window.actionsFromBoard.push(actionsInBoard);
+                State.actionsFromBoard.push(actionsInBoard);
             }
         }
     }

@@ -35,19 +35,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: calc(10px + 1vw);
     border: 1px solid #303030;
     height: 32%;
     width: 30%;
     background: #f8f8f8;
 }
+.tile span{
+    margin-top: -7px;
+}
 .tile.disabled{
     background: #5c5c5c;
 }
-.tile.X{
+.tile.x{
     color: #F44336;
 }
-.tile.O{
+.tile.o{
     color: #03A9F4;
 }
 .tile.board-o{
@@ -60,7 +63,7 @@
     background: #444;
     color: #bbb;
  }
-@media screen and (min-width: 1228px) {
+@media screen and (min-width: 996px) {
     .board-container{
         width: 36%;
         padding-top: 30%;

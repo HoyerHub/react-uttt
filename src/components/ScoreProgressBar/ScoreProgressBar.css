@@ -1,0 +1,35 @@
+.progress-bar-container{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    width: 45%;
+}
+
+.score-progress-bar{
+    height: 24px;
+    border-radius: 10px;
+    color: #F44336;
+    background-color: #161921;
+
+}
+.progress {
+    height: 24px;
+    background-color: #595f6a;
+    border-radius: 0 10px 10px 0;
+    color: #03A9F4;
+    float: right;
+    transition: width 1s;
+}
+.score-progress-bar__o{
+    float: right;
+    margin-right: 20px;
+}
+.score-progress-bar__x{
+     float: left;
+     margin-left: 20px;
+ }
+@media screen and (min-width: 996px) {
+    .progress-bar-container{
+        width: 28%;
+    }
+}

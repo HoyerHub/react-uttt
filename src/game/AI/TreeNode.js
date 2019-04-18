@@ -1,5 +1,5 @@
-import Helpers from './Helpers';
-import State from "./State";
+import Helpers from '../Tools/Helpers';
+import State from "../State";
 
 class TreeNode {
 

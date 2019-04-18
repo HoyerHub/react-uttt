@@ -1,5 +1,5 @@
 import TreeNode from './TreeNode';
-import State from './State';
+import State from '../State';
 
 class UCT {
 
@@ -20,7 +20,7 @@ class UCT {
               bestNode = i;
           }
       }
-      return bestNode;
+      return [bestNode, bestScore];
     };
 
     getMostVisitedChild = (node) => {
@@ -47,7 +47,7 @@ class UCT {
         while (true){
             let node = rootNode;
             while (!node.isTerminal() && node.isFullyExpanded()){
-                node = node.children[this.getBestUCTChild(node)];
+                node = node.children[this.getBestUCTChild(node)[0]];
             }
             if (!node.isFullyExpanded() && !node.isTerminal()) {
                 node = node.expand();
@@ -73,12 +73,12 @@ class UCT {
             }
         }
         this.isRunning = false;
-        return [...rootNode.children[bestNode].action];
+        return [...rootNode.children[bestNode].action, (50 + 50 * this.getBestUCTChild(rootNode)[1])];
     };
 
     constructor(){
         this.uct_k = Math.sqrt(2);
-        this.maxMillis = 200;
+        this.maxMillis = 400;
         this.maxIterations = Number.MAX_VALUE;
         this.isRunning = false;
     }

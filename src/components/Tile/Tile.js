@@ -26,15 +26,15 @@ class Tile extends Component {
             return classes;
         }
         if (!this.props.isValid) classes += " disabled";
-        if (this.value) classes += " " + this.value;
+        if (this.props.tileState >= 0) classes += " " + this.value;
         return classes;
     };
 
     render() {
-        this.value = this.props.tileState === 0 ? "X" : "O";
+        this.value = this.props.tileState === 0 ? "x" : "o";
         return (
             <div className={this.getClasses()} onClick={this.onClick}>
-                {this.props.tileState >= 0 ? this.value : ""}
+                <span>{this.props.tileState >= 0 ? this.value : ""}</span>
             </div>
         );
     }
