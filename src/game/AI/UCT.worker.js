@@ -7,6 +7,6 @@ if (typeof importScripts !== 'undefined'){
         let uct = new UCT();
         let state = new State(JSON.parse(event.data));
         let result = uct.run(state);
-        postMessage(result);
+        postMessage([...result, state.turn]);
     });
 }

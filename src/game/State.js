@@ -32,6 +32,7 @@ class State {
         }
         this.currentPlayer = 1 - this.currentPlayer;
         this.lastMove = [board, pos];
+        this.turn++;
         return this;
     };
 
@@ -82,6 +83,7 @@ class State {
             this.winner = state.winner;
             this.boardStates = [...state.boardStates];
             this.boards = [];
+            this.turn = state.turn;
             for (let i = 0; i < 2; i++) {
                 this.boards.push([...state.boards[i]])
             }
@@ -93,6 +95,7 @@ class State {
             this.winner = -1;
             this.boardStates = [0,0,0];
             this.boards = [[],[]];
+            this.turn = 0;
             for (let i = 0; i < 9; i++) {
                 this.boards[0].push(0);
                 this.boards[1].push(0);

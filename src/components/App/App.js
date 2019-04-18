@@ -37,8 +37,7 @@ class App extends Component {
     };
 
     resetMatch = () => {
-        this.engine.resetMatch();
-        this.updateState();
+        this.engine.resetMatch(this.updateState);
     };
 
     getTurnInfo = () => {

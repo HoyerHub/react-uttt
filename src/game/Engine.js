@@ -2,11 +2,17 @@ import State from "./State";
 import UCT from "./AI/UCT";
 
 class Engine {
-    resetMatch = () =>{
-        console.log("Engine created.");
+    resetMatch = (callback) =>{
         this.state = new State();
         this.actions = this.state.getActions();
         this.winChances = [50, 50];
+        if (typeof callback !== "undefined") {
+            this.callback = callback;
+            callback();
+            if (this.playerModes[0] === 1){
+                this.worker.postMessage(JSON.stringify(this.state));
+            }
+        }
     };
 
     isValidMove = (board, tile) =>{
@@ -62,6 +68,7 @@ class Engine {
         this.uct = new UCT();
         this.worker = new Worker('./AI/UCT.worker.js', { type: 'module' });
         this.worker.onmessage = e => {
+            if (this.state.turn !== e.data[3]) return;
             this.winChances[this.state.currentPlayer] = Math.min(100, Math.max(0, e.data[2]));
             this.winChances[1 - this.state.currentPlayer] = 100 - this.winChances[this.state.currentPlayer];
             if (this.playerModes[this.state.currentPlayer] === 1){
