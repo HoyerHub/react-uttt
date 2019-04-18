@@ -1,5 +1,4 @@
 import State from "./State";
-import UCT from "./AI/UCT";
 
 class Engine {
     resetMatch = (callback) =>{
@@ -53,7 +52,7 @@ class Engine {
     };
 
     onClick = (board, tile, callback) => {
-        if (this.uct.isRunning) return;
+        if (this.playerModes[this.state.currentPlayer] === 1) return;
         if (typeof this.callback === "undefined") this.callback = callback;
         if (this.isValidMove(board, tile)) {
             this.state.applyAction(board, tile);
@@ -65,7 +64,6 @@ class Engine {
 
     constructor(){
         this.resetMatch();
-        this.uct = new UCT();
         this.worker = new Worker('./AI/UCT.worker.js', { type: 'module' });
         this.worker.onmessage = e => {
             if (this.state.turn !== e.data[3]) return;
