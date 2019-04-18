@@ -33,6 +33,7 @@ class App extends Component {
     };
 
     clickedTile = (board, tile) => {
+        if (this.engine.playerModes[this.engine.state.currentPlayer] === 1) return;
         this.engine.onClick(board, tile, this.updateState);
     };
 

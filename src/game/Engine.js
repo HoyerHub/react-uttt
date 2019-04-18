@@ -52,7 +52,6 @@ class Engine {
     };
 
     onClick = (board, tile, callback) => {
-        if (this.playerModes[this.state.currentPlayer] === 1) return;
         if (typeof this.callback === "undefined") this.callback = callback;
         if (this.isValidMove(board, tile)) {
             this.state.applyAction(board, tile);
