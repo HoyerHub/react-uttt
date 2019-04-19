@@ -38,6 +38,7 @@ class UCT {
     };
 
     run = (state, timer) => {
+        console.log(timer);
         let rootNode = new TreeNode(state, null);
         let bestNode;
         let startTime = Date.now();

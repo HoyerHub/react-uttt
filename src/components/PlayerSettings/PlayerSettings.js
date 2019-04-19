@@ -13,7 +13,7 @@ class PlayerSettings extends Component {
                         <IconComputer onClick={()=>{this.props.setPlayerMode(0, 1)}}/></span>
                     <span className="calculation-time-input-container">
                         <span className="calculation-time-input">
-                            <input type="number" min="20" max="5000" step="20" defaultValue="400" onChange={(e)=>{this.props.setMctsTimer(1, e.target.value)}}/>
+                            <input type="number" min="20" max="5000" step="20" defaultValue="400" onChange={(e)=>{this.props.setMctsTimer(0, e.target.value)}}/>
                             <span className="input-label">ms</span>
                         </span>
                     </span>
