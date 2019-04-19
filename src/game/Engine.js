@@ -9,7 +9,7 @@ class Engine {
             this.callback = callback;
             callback();
             if (this.playerModes[0] === 1){
-                this.worker.postMessage(JSON.stringify(this.state));
+                this.worker.postMessage([JSON.stringify(this.state), this.mctsTimers[this.state.currentPlayer]]);
             }
         }
     };
@@ -23,7 +23,7 @@ class Engine {
         this.playerModes[player] = mode;
         callback();
         if (mode === 1 && player === this.state.currentPlayer){
-            this.worker.postMessage(JSON.stringify(this.state));
+            this.worker.postMessage([JSON.stringify(this.state), this.mctsTimers[this.state.currentPlayer]]);
         }
     };
 
@@ -57,7 +57,7 @@ class Engine {
             this.state.applyAction(board, tile);
             this.actions = this.state.getActions();
             callback();
-            if (!this.state.isTerminal) this.worker.postMessage(JSON.stringify(this.state));
+            if (!this.state.isTerminal) this.worker.postMessage([JSON.stringify(this.state), this.mctsTimers[this.state.currentPlayer]]);
         }
     };
 
@@ -74,6 +74,7 @@ class Engine {
             else this.callback();
         };
         this.playerModes = [0, 0];
+        this.mctsTimers = [400, 400];
     };
 }
 export default Engine;

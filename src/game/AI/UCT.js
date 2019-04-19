@@ -37,8 +37,7 @@ class UCT {
         return bestNode;
     };
 
-    run = (state) => {
-        this.isRunning = true;
+    run = (state, timer) => {
         let rootNode = new TreeNode(state, null);
         let bestNode;
         let startTime = Date.now();
@@ -67,20 +66,17 @@ class UCT {
             }
             bestNode = this.getMostVisitedChild(node);
             iterations++;
-            if (iterations > this.maxIterations || Date.now() - startTime > this.maxMillis){
+            if (iterations > this.maxIterations || Date.now() - startTime > timer){
                 console.log("MCTS finished running. Iterations: " + iterations);
                 break;
             }
         }
-        this.isRunning = false;
         return [...rootNode.children[bestNode].action, (50 + 50 * this.getBestUCTChild(rootNode)[1])];
     };
 
     constructor(){
         this.uct_k = Math.sqrt(2);
-        this.maxMillis = 400;
         this.maxIterations = Number.MAX_VALUE;
-        this.isRunning = false;
     }
 }
 export default UCT;

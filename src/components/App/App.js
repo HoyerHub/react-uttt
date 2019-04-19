@@ -57,6 +57,10 @@ class App extends Component {
         this.engine.setPlayerMode(player, mode, this.updateState);
     };
 
+    setMctsTimer = (player, ms) => {
+      this.engine.mctsTimers[player] = ms;
+    };
+
     render() {
         return (
             <div className="App">
@@ -66,7 +70,7 @@ class App extends Component {
                     tileStates={this.state.boards}
                     tileClickMethod={this.clickedTile}
                     validMovesMethod={this.state.validMovesMethod}/>
-                <PlayerSettings setPlayerMode={this.setPlayerMode} playerModes={this.engine.playerModes}/>
+                <PlayerSettings setMctsTimer={this.setMctsTimer} setPlayerMode={this.setPlayerMode} set playerModes={this.engine.playerModes}/>
                 <ScoreProgressBar progress={this.engine.winChances[1]}/>
             </div>
         );

@@ -21,7 +21,12 @@
     float: right;
 }
 .player-settings .icon-computer{
-    margin-left: 6px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.player-settings .icon-user{
+    margin-left: 3px;
+    margin-right: 3px;
 }
 .player-settings .icon-user svg{
     height: 20px;
@@ -29,3 +34,39 @@
 .player-settings .icon-computer svg{
      height: 20px;
  }
+.calculation-time-input-container{
+    max-width: 100px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    transform: translate3d(0,-5px,0);
+}
+.calculation-time-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #21262f;
+    color: #c6c6c5;
+    border-radius: 20px;
+    padding-left: 1px;
+    padding-right: 6px;
+    overflow: hidden;
+    height: 19px;
+}
+.calculation-time-input span{
+    margin-top: -4px;
+    border-radius: 0px 20px 20px 0px;
+    margin-left: 3px;
+    font-size: 13px;
+}
+.calculation-time-input input{
+    font-size: 12px;
+    padding-top: 2px;
+    display: inline-block;
+    background-color: #393f48;
+    color: #7d7d7d;
+    border: none;
+    max-width: 42px;
+    border-radius: 20px 0px 0px 20px;
+    padding-left: 10px;
+}
