@@ -1,11 +1,16 @@
 .latency{
     position: absolute;
     top: 125px;
-    left: calc(25% + 5px);
+    left: calc(10% + 5px);
     font-size: 14px;
+}
+@media screen and (min-width: 660px) {
+    .latency{
+        right: calc(50% + 5px);
+    }
 }
 @media screen and (min-width: 996px) {
     .latency{
-        right: calc(50% + 5px);
+        right: calc(35% + 5px);
     }
 }

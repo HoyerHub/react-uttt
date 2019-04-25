@@ -1,6 +1,6 @@
 .board-container{
-    width: 56%;
-    padding-top: 48%;
+    width: 90%;
+    padding-top: 74%;
     overflow: hidden;
     position: relative;
     margin-top: 40px;
@@ -63,6 +63,12 @@
     background: #444;
     color: #bbb;
  }
+@media screen and (min-width: 660px) {
+    .board-container{
+        width: 56%;
+        padding-top: 48%;
+    }
+}
 @media screen and (min-width: 996px) {
     .board-container{
         width: 36%;

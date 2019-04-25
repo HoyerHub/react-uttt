@@ -18,7 +18,12 @@
 .icon-reset {
   position: absolute;
   top: 120px;
-  right: calc(25% + 5px);
+  right: calc(10% + 5px);
+}
+@media screen and (min-width: 660px) {
+  .icon-reset{
+    right: calc(25% + 5px);
+  }
 }
 @media screen and (min-width: 996px) {
   .icon-reset{

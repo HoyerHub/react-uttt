@@ -1,5 +1,5 @@
 .player-settings{
-    width: 50%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
@@ -69,6 +69,11 @@
     max-width: 42px;
     border-radius: 20px 0px 0px 20px;
     padding-left: 10px;
+}
+@media screen and (min-width: 660px) {
+    .player-settings{
+        width: 50%;
+    }
 }
 @media screen and (min-width: 996px) {
     .player-settings{
