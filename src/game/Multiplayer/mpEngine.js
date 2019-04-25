@@ -22,7 +22,7 @@ class mpEngine {
         this.onEvent = callback;
         this.hasActiveMatch = false;
         this.latency = 0;
-        this.socket = io("http://localhost:3000");
+        this.socket = io("https://uttt-backend.herokuapp.com");
         this.socket.on("connect", () => {
             if (this.onEvent != null) this.onEvent("connected");
             if (this.mpState === -1){
