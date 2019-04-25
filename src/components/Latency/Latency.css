@@ -1,0 +1,6 @@
+.latency{
+    position: absolute;
+    top: 125px;
+    left: calc(25% + 5px);
+    font-size: 14px;
+}

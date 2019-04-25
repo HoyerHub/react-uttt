@@ -1,11 +1,10 @@
-.App {
+.app {
   text-align: center;
   display: block;
   min-height: 100vh;
   color: #fff;
   background-color: #282C34;
 }
-
 .status-text{
   padding-top: 80px;
   font-size: 24px;
@@ -15,8 +14,8 @@
 }
 .status-text .o{
   color: #03A9F4;
- }
-.icon-reset{
+}
+.icon-reset {
   position: absolute;
   top: 120px;
   right: calc(25% + 5px);

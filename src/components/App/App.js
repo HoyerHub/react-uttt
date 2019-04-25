@@ -1,35 +1,43 @@
 import React, {Component} from 'react';
 import './App.css';
-import BigBoard from '../BigBoard/BigBoard'
 import Engine from "../../game/Engine";
-import {IconReset} from "../Icons/Icons";
-import ScoreProgressBar from "../ScoreProgressBar/ScoreProgressBar";
+import TopBar from "../TopBar/TopBar";
+import BigBoard from "../BigBoard/BigBoard";
 import PlayerSettings from "../PlayerSettings/PlayerSettings";
+import ScoreProgressBar from "../ScoreProgressBar/ScoreProgressBar";
 
 class App extends Component {
 
     constructor(props) {
         super(props);
-        this.engine = new Engine();
+        this.engine = new Engine(this.updateState);
         this.state = {
             isTerminal: this.engine.state.isTerminal,
             winner: this.engine.state.winner,
             currentPlayer: this.engine.state.currentPlayer,
             boardStates: this.engine.getBoardStates(),
             boards: this.engine.state.boards,
-            validMovesMethod: this.engine.getValidMoves
+            validMovesMethod: this.engine.getValidMoves,
+            isMultiPlayer: this.engine.mpEngine.hasActiveMatch,
+            isConnected: this.engine.mpEngine.socket.connected,
+            latency: this.engine.mpEngine.latency
         };
     }
 
     updateState = () => {
-        this.setState({
-            isTerminal: this.engine.state.isTerminal,
-            winner: this.engine.state.winner,
-            currentPlayer: this.engine.state.currentPlayer,
-            boardStates: this.engine.getBoardStates(),
-            boards: this.engine.state.boards,
-            validMovesMethod: this.engine.getValidMoves
-        });
+        if(typeof this.engine !== "undefined"){
+            this.setState({
+                isTerminal: this.engine.state.isTerminal,
+                winner: this.engine.state.winner,
+                currentPlayer: this.engine.state.currentPlayer,
+                boardStates: this.engine.getBoardStates(),
+                boards: this.engine.state.boards,
+                validMovesMethod: this.engine.getValidMoves,
+                isMultiPlayer: this.engine.mpEngine.hasActiveMatch,
+                isConnected: this.engine.mpEngine.socket.connected,
+                latency: this.engine.mpEngine.latency
+            });
+        }
     };
 
     clickedTile = (board, tile) => {
@@ -58,19 +66,29 @@ class App extends Component {
     };
 
     setMctsTimer = (player, ms) => {
-      this.engine.mctsTimers[player] = ms;
+        this.engine.mctsTimers[player] = ms;
+    };
+
+    enterQueue = () => {
+        this.engine.mpEngine.enterQueue();
+        this.updateState();
+    };
+
+    leaveQueue = () => {
+        this.engine.mpEngine.leaveQueue();
+        this.updateState();
     };
 
     render() {
         return (
-            <div className="App">
-                <div className="status-text">{this.getTurnInfo()}<IconReset onClick={this.resetMatch}/></div>
+            <div className="app">
+                <TopBar latency={this.engine.mpEngine.latency} connected={this.state.isConnected} isMultiPlayer={this.state.isMultiPlayer} leaveQueue={this.leaveQueue} enterQueue={this.enterQueue} mpState={this.engine.mpEngine.mpState} getTurnInfo={this.getTurnInfo} resetMatch={this.resetMatch}/>
                 <BigBoard
                     boardStates={this.state.boardStates}
                     tileStates={this.state.boards}
                     tileClickMethod={this.clickedTile}
                     validMovesMethod={this.state.validMovesMethod}/>
-                <PlayerSettings setMctsTimer={this.setMctsTimer} setPlayerMode={this.setPlayerMode} set playerModes={this.engine.playerModes}/>
+                <PlayerSettings isMultiPlayer={this.state.isMultiPlayer} setMctsTimer={this.setMctsTimer} setPlayerMode={this.setPlayerMode} playerModes={this.engine.playerModes}/>
                 <ScoreProgressBar progress={this.engine.winChances[1]}/>
             </div>
         );

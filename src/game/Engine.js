@@ -1,16 +1,14 @@
 import State from "./State";
+import mpEngine from "./Multiplayer/mpEngine";
 
 class Engine {
-    resetMatch = (callback) =>{
+    resetMatch = () =>{
         this.state = new State();
         this.actions = this.state.getActions();
         this.winChances = [50, 50];
-        if (typeof callback !== "undefined") {
-            this.callback = callback;
-            callback();
-            if (this.playerModes[0] === 1){
-                this.worker.postMessage([JSON.stringify(this.state), this.mctsTimers[this.state.currentPlayer]]);
-            }
+        this.callback();
+        if (this.playerModes[0] === 1){
+            this.worker.postMessage([JSON.stringify(this.state), this.mctsTimers[this.state.currentPlayer]]);
         }
     };
 
@@ -18,10 +16,9 @@ class Engine {
         return this.actions.some(action => action[0] === board && action[1] === tile);
     };
 
-    setPlayerMode = (player, mode, callback) => {
-        if (typeof this.callback === "undefined") this.callback = callback;
+    setPlayerMode = (player, mode) => {
         this.playerModes[player] = mode;
-        callback();
+        this.callback();
         if (mode === 1 && player === this.state.currentPlayer){
             this.worker.postMessage([JSON.stringify(this.state), this.mctsTimers[this.state.currentPlayer]]);
         }
@@ -51,18 +48,39 @@ class Engine {
             });
     };
 
-    onClick = (board, tile, callback) => {
-        if (typeof this.callback === "undefined") this.callback = callback;
+    onClick = (board, tile) => {
         if (this.isValidMove(board, tile)) {
+            if (this.mpEngine.hasActiveMatch){
+                this.mpEngine.makeMove([board, tile]);
+                return;
+            }
             this.state.applyAction(board, tile);
             this.actions = this.state.getActions();
-            callback();
+            this.callback();
             if (!this.state.isTerminal) this.worker.postMessage([JSON.stringify(this.state), this.mctsTimers[this.state.currentPlayer]]);
         }
     };
 
-    constructor(){
-        this.resetMatch();
+    onMpEvent = (name, data) => {
+        console.log(name, data);
+        if (name === "foundMatch"){
+            this.playerModes[0] = data.participants[0] === this.mpEngine.socket.id ? 2 : 0;
+            this.playerModes[1] = this.playerModes[0] === 2 ? 0 : 2;
+            this.resetMatch();
+        }
+        else if (name === "newMove"){
+            this.state.applyAction(data[0], data[1]);
+            this.actions = this.state.getActions();
+            this.callback();
+            if (!this.state.isTerminal) this.worker.postMessage([JSON.stringify(this.state), this.mctsTimers[this.state.currentPlayer]]);
+        }
+        else {
+            this.callback();
+        }
+    };
+
+    constructor(callback){
+        this.callback = callback;
         this.worker = new Worker('./AI/UCT.worker.js', { type: 'module' });
         this.worker.onmessage = e => {
             if (this.state.turn !== e.data[3]) return;
@@ -75,6 +93,8 @@ class Engine {
         };
         this.playerModes = [0, 0];
         this.mctsTimers = [400, 400];
+        this.mpEngine = new mpEngine(this.onMpEvent);
+        this.resetMatch();
     };
 }
 export default Engine;
