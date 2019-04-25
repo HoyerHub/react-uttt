@@ -4,3 +4,8 @@
     left: calc(25% + 5px);
     font-size: 14px;
 }
+@media screen and (min-width: 996px) {
+    .latency{
+        right: calc(50% + 5px);
+    }
+}
