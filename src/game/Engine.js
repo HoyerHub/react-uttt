@@ -91,7 +91,7 @@ class Engine {
             }
             else this.callback();
         };
-        this.playerModes = [0, 0];
+        this.playerModes = [0, 1];
         this.mctsTimers = [400, 400];
         this.mpEngine = new mpEngine(this.onMpEvent);
         this.resetMatch();
