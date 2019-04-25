@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Latency/Latency.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="17">
+              <caret line="1" column="23" lean-forward="true" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -55,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/PlayerSettings/PlayerSettings.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+            <state relative-caret-position="1156">
+              <caret line="68" column="20" lean-forward="true" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -189,11 +189,11 @@
         <option value="$PROJECT_DIR$/src/game/Engine.js" />
         <option value="$PROJECT_DIR$/src/game/Multiplayer/mpEngine.js" />
         <option value="$PROJECT_DIR$/src/components/BigBoard/Board.css" />
-        <option value="$PROJECT_DIR$/src/components/PlayerSettings/PlayerSettings.css" />
         <option value="$PROJECT_DIR$/src/components/FindMatch/FindMatch.css" />
         <option value="$PROJECT_DIR$/src/components/App/App.css" />
         <option value="$PROJECT_DIR$/src/components/ScoreProgressBar/ScoreProgressBar.css" />
         <option value="$PROJECT_DIR$/src/components/Latency/Latency.css" />
+        <option value="$PROJECT_DIR$/src/components/PlayerSettings/PlayerSettings.css" />
       </list>
     </option>
   </component>
@@ -402,12 +402,12 @@
       <workItem from="1556011666802" duration="599000" />
       <workItem from="1556028294474" duration="1198000" />
       <workItem from="1556141646885" duration="10823000" />
-      <workItem from="1556196041440" duration="1360000" />
+      <workItem from="1556196041440" duration="1734000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160150000" />
+    <option name="totallyTimeSpent" value="160524000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-1" width="1936" height="1056" extended-state="6" />
@@ -674,13 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/PlayerSettings/PlayerSettings.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/FindMatch/FindMatch.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -724,8 +717,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Latency/Latency.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="17">
+          <caret line="1" column="23" lean-forward="true" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PlayerSettings/PlayerSettings.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" column="20" lean-forward="true" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
         </state>
       </provider>
     </entry>
